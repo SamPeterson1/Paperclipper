@@ -1,0 +1,1 @@
+setInterval(() => document.getElementById("btnMakePaperclip").click(), 100);
