@@ -16,4 +16,27 @@
  *	along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-setInterval(() => document.getElementById("btnMakePaperclip").click(), 100);
+btnLowerPrice = document.getElementById("btnLowerPrice");
+btnRaisePrice = document.getElementById("btnRaisePrice");
+
+function getDemand(clipPrice) {
+    return demand * margin / clipPrice;
+}
+
+function run() {
+    //Match sales with production
+    desiredDemand = Math.pow(clipRate / 7, 1/1.15);
+    desiredMarginCents = Math.ceil(100 * margin * demand / desiredDemand);
+    currentMarginCents = margin * 100;
+
+    if (desiredMarginCents > currentMarginCents) {
+        for (i = currentMarginCents; i < desiredMarginCents; i ++)
+            btnRaisePrice.click();
+    } else if (desiredMarginCents < currentMarginCents) {
+        for (i = desiredMarginCents; i < currentMarginCents; i ++)
+            btnLowerPrice.click();
+    }
+}
+
+setInterval(run, 100);
+
