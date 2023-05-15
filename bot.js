@@ -53,7 +53,7 @@ function run() {
 
     bestMarginCents = Math.ceil(100 * margin * demand / bestDemand);
 
-    console.log(bestMarginCents);
+    console.log(bestMarginCents + " " + bestDemand);
 
     /*
     if (desiredMarginCents > currentMarginCents) {
