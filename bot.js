@@ -36,7 +36,7 @@ function getDemand(newMargin) {
 //newton's method
 function approximateBestDemand(x) {
     err = 0.07 * x * Math.pow(1.15, x) - clipRate;
-    derivative = 0.07 * Math.pow(1.15, x) + 0.07 * x * Math.log(1.15);
+    derivative = 0.07 * Math.pow(1.15, x) * (1 + x * Math.log(1.15));
 
     return x - err / derivative;
 }
