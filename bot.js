@@ -36,17 +36,18 @@ function getDemand(newMargin) {
 //newton's method
 function approximateBestDemand(x) {
     err = 0.07 * x * Math.pow(1.15, x) - clipRate;
-    derivative = 0.07 * Math.pow(1.16, x) + 0.07 * x * Math.log(1.15);
+    derivative = 0.07 * Math.pow(1.15, x) + 0.07 * x * Math.log(1.15);
 
     return x - err / derivative;
 }
+
 function run() {
     //Match sales with production
     bestDemand = Math.pow(clipRate / 7, 1/1.15);
 
     if (bestDemand < 100) {
         for (i = 0; i < 5; i ++)
-            bestDemand = approximateBestDemand(0);
+            bestDemand = approximateBestDemand(1);
     }
 
     bestMarginCents = Math.ceil(100 * margin * demand / bestDemand);
