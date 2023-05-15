@@ -46,8 +46,8 @@ function run() {
     bestDemand = Math.pow(clipRate / 7, 1/1.15);
 
     if (bestDemand < 100) {
-        bestDemand = Math.log(clipRate) / Math.log(1.15);
-        for (i = 0; i < 5000; i ++)
+        bestDemand = Math.log(clipRate / 0.07) / Math.log(1.15);
+        for (i = 0; i < 10; i ++)
             bestDemand = approximateBestDemand(bestDemand);
     }
 
