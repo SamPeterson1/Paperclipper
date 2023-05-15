@@ -38,7 +38,7 @@ function run() {
     bestDemand = Math.pow(clipRate / 7, 1/1.15);
     bestMarginCents = Math.ceil(100 * margin * demand / bestDemand);
 
-    console.log(desiredMarginCents);
+    console.log(bestMarginCents);
 
     /*
     if (desiredMarginCents > currentMarginCents) {
