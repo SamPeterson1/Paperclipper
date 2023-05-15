@@ -56,7 +56,8 @@ function run() {
         bestDemand = approximateBestDemand();
 
     bestMarginCents = Math.ceil(100 * margin * demand / bestDemand);
-    
+    currentMarginCents = margin * 100;
+
     if (bestMarginCents > currentMarginCents) {
         for (i = currentMarginCents; i < bestMarginCents; i ++)
             btnRaisePrice.click();
