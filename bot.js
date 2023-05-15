@@ -57,11 +57,11 @@ function run() {
 
     bestMarginCents = Math.ceil(100 * margin * demand / bestDemand);
     
-    if (desiredMarginCents > currentMarginCents) {
-        for (i = currentMarginCents; i < desiredMarginCents; i ++)
+    if (bestMarginCents > currentMarginCents) {
+        for (i = currentMarginCents; i < bestMarginCents; i ++)
             btnRaisePrice.click();
-    } else if (desiredMarginCents < currentMarginCents) {
-        for (i = desiredMarginCents; i < currentMarginCents; i ++)
+    } else if (bestMarginCents < currentMarginCents) {
+        for (i = bestMarginCents; i < currentMarginCents; i ++)
             btnLowerPrice.click();
     }
 
