@@ -34,28 +34,29 @@ function getDemand(newMargin) {
 }
 
 //newton's method
-function approximateBestDemand(x) {
-    err = 0.07 * x * Math.pow(1.15, x) - clipRate;
-    derivative = 0.07 * Math.pow(1.15, x) * (1 + x * Math.log(1.15));
+function approximateBestDemand() {
+    a = Math.log(clipRate * Math.log(1.15) / 0.07);
+    x = (a - Math.log(a - Math.log(a))) / Math.log(1.15);
 
-    return x - err / derivative;
+    for (i = 0; i < 5; i ++) {
+        err = 0.07 * x * Math.pow(1.15, x) - clipRate;
+        derivative = 0.07 * Math.pow(1.15, x) * (1 + x * Math.log(1.15));
+
+        x -= err / derivative;
+    }
+
+    return x;
 }
 
 function run() {
     //Match sales with production
     bestDemand = Math.pow(clipRate / 7, 1/1.15);
 
-    if (bestDemand < 100) {
-        bestDemand = Math.log(clipRate / 0.07) / Math.log(1.15);
-        for (i = 0; i < 10; i ++)
-            bestDemand = approximateBestDemand(bestDemand);
-    }
+    if (bestDemand < 100)
+        bestDemand = approximateBestDemand();
 
     bestMarginCents = Math.ceil(100 * margin * demand / bestDemand);
-
-    console.log(bestMarginCents + " " + bestDemand);
-
-    /*
+    
     if (desiredMarginCents > currentMarginCents) {
         for (i = currentMarginCents; i < desiredMarginCents; i ++)
             btnRaisePrice.click();
@@ -63,7 +64,6 @@ function run() {
         for (i = desiredMarginCents; i < currentMarginCents; i ++)
             btnLowerPrice.click();
     }
-    */
 
     btnMakePaperclip.click();
 }
