@@ -16,19 +16,31 @@
  *	along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 btnLowerPrice = document.getElementById("btnLowerPrice");
 btnRaisePrice = document.getElementById("btnRaisePrice");
+btnMakePaperclip = document.getElementById("btnMakePaperclip"); 
 
-function getDemand(clipPrice) {
-    return demand * margin / clipPrice;
+/*
+IMPORTANT EQUATIONS
+clipsSold = 7 * min(demand / 100, 1) * pow(demand, 1.15)
+marketing = pow(1.1, marketingLvl-1);
+demand = ((.8 / margin) * marketing * marketingEffectiveness * demandBoost * (1 + 0.1 * prestigeU);
+newDemand = demand * margin / newMargin
+*/
+
+function getDemand(newMargin) {
+    return demand * margin / newMargin;
 }
 
 function run() {
     //Match sales with production
-    desiredDemand = Math.pow(clipRate / 7, 1/1.15);
-    desiredMarginCents = Math.ceil(100 * margin * demand / desiredDemand);
-    currentMarginCents = margin * 100;
+    bestDemand = Math.pow(clipRate / 7, 1/1.15);
+    bestMarginCents = Math.ceil(100 * margin * demand / bestDemand);
 
+    console.log(desiredMarginCents);
+
+    /*
     if (desiredMarginCents > currentMarginCents) {
         for (i = currentMarginCents; i < desiredMarginCents; i ++)
             btnRaisePrice.click();
@@ -36,6 +48,9 @@ function run() {
         for (i = desiredMarginCents; i < currentMarginCents; i ++)
             btnLowerPrice.click();
     }
+    */
+
+    btnMakePaperclip.click();
 }
 
 setInterval(run, 100);
