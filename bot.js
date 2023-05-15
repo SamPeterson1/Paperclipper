@@ -47,7 +47,7 @@ function run() {
 
     if (bestDemand < 100) {
         for (i = 0; i < 5; i ++)
-            bestDemand = approximateBestDemand(1);
+            bestDemand = approximateBestDemand(bestDemand);
     }
 
     bestMarginCents = Math.ceil(100 * margin * demand / bestDemand);
